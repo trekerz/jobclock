@@ -108,7 +108,24 @@ body{
 	padding: 8px 8px;
 	text-decoration: none;
 }
-.head-card-item:hover , .head-card .clicked{
+
+.head-card a:active{
+	border: #12CAD3 solid 3px;
+	font-size: 20px;
+	color: #DB517F;
+	background-color: #FFFFFF;
+	padding: 11px 11px;
+}
+
+.head-card .hovered{
+	border: #12CAD3 solid 3px;
+	font-size: 20px;
+	color: #DB517F;
+	background-color: #FFFFFF;
+	padding: 12px 12px;
+}
+
+.head-card .clicked{
 	border: #12CAD3 solid 3px;
 	font-size: 20px;
 	color: #DB517F;
