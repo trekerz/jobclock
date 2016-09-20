@@ -3,15 +3,27 @@
 	padding: 0;
 }
 
+div{
+	white-space: nowrap; /*使窗口缩放后页面div不动*/
+}
+
 body{
-	background-color: #E0F8F6;
+	/*min-width: 1440px;*/
+	/*background-color: #D7F4DF;*/
+	/*background:-moz-linear-gradient(top,#C5F9FE,#D7F4DF);/*火狐*/
+	background:-webkit-linear-gradient(top,#C5F9FE,#D7F4DF);/*谷歌*/
+	/*background-image: -webkit-gradient(linear,left bottom,left top,color-start(0, #C5F9FE),color-stop(1, #D7F4DF));/* Safari & Chrome */
+	/*FILTER: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=#C5F9FE,endColorStr=#D7F4DF); /*IE*/
+	/*filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#C5F9FE', endColorstr='#D7F4DF'); /*IE6 & IE7*/
+	/*-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#C5F9FE', endColorstr='#D7F4DF')"; /* IE8 */
 }
 
 .head{
 	width: 100%;
-	height: 150px;
+	height: 200px;
 	margin: 0 auto;
 	background-color: #C5F9FE;
+	/*border-bottom: #12CAD3 double 30px;*/
 }
 
 .head-content{
@@ -23,7 +35,7 @@ body{
 .head-logo{
 	width: 65px;
 	height: 65px;
-	margin: 15px auto;
+	margin: 25px auto 5px;
 }
 .head-logo:hover{
 	-webkit-animation: head-logo-shake 0.1s linear infinite;
@@ -39,7 +51,7 @@ body{
 .head-title{
 	width: 600px;
 	height: 65px;
-	margin: 15px auto;
+	margin: 25px auto 5px;
 }
 
 .head-right{
@@ -73,9 +85,40 @@ body{
 }
 
 #head-CD1-days,#head-CD2-days{
-	color: #000000;
+	color: #DB517F;
 	font-size: 20px;
 }
+
+.head-card{
+	/*margin-left: 80px;*/
+	font-family: "simHei";
+	font-weight: bold;
+	margin-top: 55px;
+}
+
+.head-card-item{
+	border: #12CAD3 solid 3px;
+	border-top-left-radius: 50px;
+	border-top-right-radius: 50px;
+	border-bottom-left-radius: 50px;
+	border-bottom-right-radius: 50px;
+	color: #8AD1EF;
+	background-color: #0E6B6F;
+	margin-right: 0px;
+	padding: 8px 8px;
+	text-decoration: none;
+}
+.head-card-item:hover , .head-card .clicked{
+	border: #12CAD3 solid 3px;
+	font-size: 20px;
+	color: #DB517F;
+	background-color: #FFFFFF;
+	padding: 12px 12px;
+}
+
+
+
+
 
 
 
@@ -98,6 +141,13 @@ body{
 	width: 55%;
 	height: 1000px;
 	margin: 10px auto;
-	border: #ccc solid 2px;
+	border: #E0FFF6 solid 2px;
+	/*word-wrap:break-word; /* 自动换行（暂且不用，会与white-space: nowrap;冲突） */
+}
 
+.foot{
+	width: 100%;
+	height: 150px;
+	margin: 0 auto;
+	border-top: #C5F9FE dashed 10px;
 }
