@@ -5,8 +5,8 @@ function time(){
 	var month = time.getMonth() + 1;
 	var date = time.getDate();
 	var day = getDay(time.getDay());
-	var hour = time.getHours();
-	var minute = correctMinute(time.getMinutes());
+	var hour = correctTime(time.getHours());
+	var minute = correctTime(time.getMinutes());
 	document.getElementById("head-time").innerHTML = (year+"年"+month+"月"+date+"日&nbsp;"+day+"&nbsp;"+hour+":"+minute);
 }
 
@@ -23,8 +23,8 @@ function getDay(day){
 	}
 }
 
-function correctMinute(min){
-	switch (min) {
+function correctTime(num){
+	switch (num) {
 		case 1:return "01";break;
 		case 2:return "02";break;
 		case 3:return "03";break;
@@ -35,11 +35,12 @@ function correctMinute(min){
 		case 8:return "08";break;
 		case 9:return "09";break;
 		case 0:return "00";break;
-		default:return min;break;
+		default:return num;break;
 	}
 }
 
 var clockStart = setInterval(time,1000);
+
 
 
 function countdown(){

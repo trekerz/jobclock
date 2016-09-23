@@ -155,7 +155,7 @@ body{
 
 
 
-.main{
+.main-content{
 	width: 60%;
 	height: 1000px;
 	margin: 10px auto;
@@ -164,6 +164,48 @@ body{
 	-webkit-box-shadow: 0px 0px 8px rgba(34,25,25,0.2);
 	-moz-box-shadow: 0px 0px 8px rgba(34,25,25,0.2);
 	box-shadow: 0px 0px 8px rgba(34,25,25,0.2);
+	float: left;
+}
+
+.main-left{
+	width: 20%;
+	margin-top: 50px;
+	float: left;
+}
+
+.main-right{
+	width: 20%;
+	margin-top: 50px;
+	float: right;
+}
+
+.miao-left{
+	width: 150px;
+	height: 150px;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	-webkit-box-shadow: 0px 0px 8px rgba(234,25,25,0.2);
+	-moz-box-shadow: 0px 0px 8px rgba(234,25,25,0.2);
+	box-shadow: 0px 0px 8px rgba(234,25,25,0.2);
+	margin-left: 25%;
+}
+
+.miao-right{
+	width: 150px;
+	height: 150px;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	-webkit-box-shadow: 0px 0px 8px rgba(34,25,225,0.2);
+	-moz-box-shadow: 0px 0px 8px rgba(34,25,225,0.2);
+	box-shadow: 0px 0px 8px rgba(34,25,225,0.2);
+	margin-left: 25%;
+}
+
+.contactQR{
+	width: 150px;
+	height: 150px;
+	margin-left: 25%;
+	margin-top: 3%;
 }
 
 
@@ -185,6 +227,7 @@ body{
 	height: 150px;
 	margin: 0 auto;
 	border-top: #C5F9FE dashed 10px;
+	clear: both;
 }
 
 .foot-banner{
