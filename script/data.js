@@ -2,13 +2,13 @@
 * 根据请求从后台获取数据并构建前端显示模型
 * 
 * 1.判断所请求函数是否存在于sessionStorage中
-* 	isItStored(date)
+* 	ifStored(date)
 * 2.缓冲等待动画（网络不好时作用大些）
 * 	showLoading()
 * 3.接收数据时执行
 * 	dataReceiving(month,date,result)
 * 4.检测到数据在sessionStorage，取出复用
-* 	dataReuse(month,date)
+* 	dataReuse(storedData)
 * 5.框架构建相应日期的信息
 * 	showResult(result)
 * 6.数据表为空时显示的为空提示信息
@@ -20,7 +20,7 @@
 var sStorage = window.sessionStorage;
 
 // 判断数据在sessionStorage中是否存在
-function isItStored(date){
+function ifStored(date){
 	try {
 		var data = sStorage.getItem(date);
 	}catch (e){
@@ -63,8 +63,8 @@ function dataReceiving(month,date,result){
 }
 
 // 检测到数据在sessionStorage，直接复用
-function dataReuse(month,date){
-	var data = JSON.parse(isItStored(month+date));
+function dataReuse(storedData,month,date){
+	var data = JSON.parse(storedData);
 	if(data.db){
 		showResult(data);
 	}else{
@@ -170,7 +170,8 @@ $(document).ready(function(){
 		if(!($(this).html() == $hasClassHovered)){
 
 			// 检查sessionStorage里有没有请求的数据
-			if(isItStored(dateToSend) === false){
+			var storedData = ifStored(dateToSend);
+			if(storedData === false){
 				showLoading();
 				$.ajax({
 					type:"POST",
@@ -183,7 +184,7 @@ $(document).ready(function(){
 					}
 				});
 			}else{
-				dataReuse(month,date);
+				dataReuse(storedData,month,date);
 			}
 
 		}else{
