@@ -1,16 +1,17 @@
+var time = new Date();
 
-function time(){
-	var time = new Date();
+// 当前时间显示
+function showTime(){
 	var year = time.getFullYear();
 	var month = time.getMonth() + 1;
 	var date = time.getDate();
-	var day = getDay(time.getDay());
+	var day = getXingqi(time.getDay());
 	var hour = correctTime(time.getHours());
 	var minute = correctTime(time.getMinutes());
 	document.getElementById("head-time").innerHTML = (year+"年"+month+"月"+date+"日&nbsp;"+day+"&nbsp;"+hour+":"+minute);
 }
 
-function getDay(day){
+function getXingqi(day){
 	switch (day) {
 		case 1:return "星期一";break;
 		case 2:return "星期二";break;
@@ -39,17 +40,13 @@ function correctTime(num){
 	}
 }
 
-var clockStart = setInterval(time,1000);
-
-
-
+// 两个倒计时
 function countdown(){
-	var now = new Date().getTime();
+	var now = time.getTime();
 	var graduate = new Date(2017,6,1).getTime();
 	var autumn = new Date(2016,11,31);
 	var countdown1 = graduate - now;
 	var countdown2 = autumn - now;
-
 
 	var d1 = Math.floor(countdown1/1000/3600/24);
 	document.getElementById("head-CD1-days").innerHTML = d1;
@@ -57,4 +54,25 @@ function countdown(){
 	document.getElementById("head-CD2-days").innerHTML = d2;
 }
 
-var countStart = setInterval(countdown,1000);
+// 根据当前日期显示导航栏日期按钮组
+function defaultDateToShow(){
+	var now = time.getTime();
+	var aDay = 86400000;
+	for(var i=0;i<10;i++){
+		if(i <= 4){
+			$(".head-card-item:eq("+i+")").children("span")[0].innerHTML = new Date(now-(4-i)*aDay).getMonth() + 1;
+			$(".head-card-item:eq("+i+")").children("span")[1].innerHTML = new Date(now-(4-i)*aDay).getDate();
+		}else{
+			$(".head-card-item:eq("+i+")").children("span")[0].innerHTML = new Date(now+(i-4)*aDay).getMonth() + 1;
+			$(".head-card-item:eq("+i+")").children("span")[1].innerHTML = new Date(now+(i-4)*aDay).getDate();
+		}
+	}
+}
+
+
+// 时间日期相关入口函数
+$(document).ready(function(){
+	var clockStart = setInterval(showTime,1000);
+	var countStart = setInterval(countdown,1000);
+	defaultDateToShow();
+});

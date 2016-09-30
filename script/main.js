@@ -52,8 +52,9 @@ $(document).ready(function(){
 	});
 });
 
-// 显示联系信息
+// 显示联系信息入口函数
 $(".contact").hide();
+$(".public").hide();
 $(document).ready(function(){
 	$(".miao-right").mouseenter(function(){
 		$(".contact").fadeIn(300);
@@ -62,5 +63,14 @@ $(document).ready(function(){
 	$(".miao-right").mouseleave(function(){
 		$(".contact").fadeOut(300);
 		$(".miao-right").attr("src","./image/miao2.png");
+	});
+
+	$(".miao-left").mouseenter(function(){
+		$(".public").fadeIn(300);
+		$(".miao-left").attr("src","./image/miao1.png");
+	});
+	$(".miao-left").mouseleave(function(){
+		$(".public").fadeOut(300);
+		$(".miao-left").attr("src","./image/miao0.png");
 	});
 });
