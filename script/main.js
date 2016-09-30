@@ -1,5 +1,3 @@
-
-
 var currentClicked = $(".hovered");
 var clickedOrNot = false;
 var banner = $(".foot-banner");
