@@ -5,7 +5,7 @@
 	error_reporting(0);
 
 	// 构造json格式数据的函数
-	function jsonFactory($source,$num){
+	function jsonFactory($source,$index){
 		// 循环取出记录
 		$i = 0;
 		$character = "";
@@ -15,7 +15,7 @@
 			$i++;
 		}
 
-		switch ($num) {
+		switch ($index) {
 			case 1: $character="company";break;
 			case 2: $character="type";break;
 			case 3: $character="tick";break;
@@ -46,10 +46,10 @@
 	if($_POST["request"]){
 		$dateRequested = $_POST["request"];
 		$sql_setchar = "set names 'utf-8'";
-		$sql_company = "SELECT company FROM `928`";
-		$sql_type = "SELECT type FROM `928`";
-		$sql_tick = "SELECT tick FROM `928`";
-		$sql_site = "SELECT site FROM `928`";
+		$sql_company = "SELECT company FROM `".$dateRequested."`";
+		$sql_type = "SELECT type FROM `".$dateRequested."`";
+		$sql_tick = "SELECT tick FROM `".$dateRequested."`";
+		$sql_site = "SELECT site FROM `".$dateRequested."`";
 
 		// 连接
 		$connect = mysql_connect($server_name , $server_username , $server_password);

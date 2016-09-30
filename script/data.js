@@ -1,5 +1,6 @@
 // 显示相应日期的信息
 function showResult(company,type,tick,site){
+	$(".main-content").children().remove();
 	var i = 0;
 	var main_info = [];
 	var main_info_head = [];
@@ -37,23 +38,28 @@ function showResult(company,type,tick,site){
 
 // 信息显示入口函数
 $(document).ready(function(){
+	$hasClassHovered = $(".hovered").html(); // 防重复点击而导致过多http请求
 	$(".head-card-item").click(function(){
-		var month = $(this).children()[0].innerHTML;
-		var date = $(this).children()[1].innerHTML;
-		var dateToSend = month + date;
-		console.log(dateToSend);
-		$.ajax({
-			type:"POST",
-			url: "script/getdata.php",
-			dataType:"json",
-			data:{"request":dateToSend},
-			success: function(result){
-				if(result.success){
-					showResult(result.company,result.type,result.tick,result.site);
-				}else{
-					alert("数据传输出错，请刷新重试。");
+		if(!($(this).html() == $hasClassHovered)){
+			var month = $(this).children()[0].innerHTML;
+			var date = $(this).children()[1].innerHTML;
+			var dateToSend = month + date;
+			$.ajax({
+				type:"POST",
+				url: "script/getdata.php",
+				dataType:"json",
+				data:{"request":dateToSend},
+				success: function(result){
+					if(result.success){
+						showResult(result.company,result.type,result.tick,result.site);
+					}else{
+						alert("数据传输出错，请刷新重试。");
+					}
 				}
-			}
-		});
+			});
+		}else{
+			console.log("the same");
+		}
+		$hasClassHovered = $(this).html();
 	});
 });
