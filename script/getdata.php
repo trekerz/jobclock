@@ -6,14 +6,8 @@
 
 	// 构造json格式数据的函数
 	function jsonFactory($source,$index){
-		// 循环取出记录
 		$i = 0;
 		$character = "";
-
-		while($row=mysql_fetch_row($source)){
-			$arr[$i] = $row[0];
-			$i++;
-		}
 
 		switch ($index) {
 			case 1: $character="company";break;
@@ -21,6 +15,12 @@
 			case 3: $character="tick";break;
 			case 4: $character="site";break;
 			default: break;
+		}
+
+		// 循环取出记录
+		while($row = mysql_fetch_row($source)){
+			$arr[$i] = $row[0];
+			$i++;
 		}
 
 		// 构造json格式数据并发送
@@ -54,7 +54,6 @@
 		// 连接
 		$connect = mysql_connect($server_name , $server_username , $server_password);
 		mysql_query($sql_setchar,$connect);
-		$db = mysql_select_db($database,$connect);
 
 		// 查询
 		$company = mysql_db_query($database, $sql_company, $connect);
@@ -62,11 +61,20 @@
 		$tick = mysql_db_query($database, $sql_tick, $connect);
 		$site = mysql_db_query($database, $sql_site, $connect);
 
-		// 构造和发送json
-		echo '{"success":true,'.jsonFactory($company,1).','.jsonFactory($type,2).','.jsonFactory($tick,3).','.jsonFactory($site,4).'}';
+		if(!empty($company) || !empty($type) || !empty($tick) || !empty($site)){
+			// 构造和发送json
+			echo '{"success":true,"db":true,'.jsonFactory($company,1).','.jsonFactory($type,2).','.jsonFactory($tick,3).','.jsonFactory($site,4).'}';
+		}else{
+			// 数据表为空的情况
+			echo '{"success":true,"db":false}';
+		}
+		
 
 		// 释放资源
 		mysql_free_result($company);
+		mysql_free_result($type);
+		mysql_free_result($tick);
+		mysql_free_result($site);
 		mysql_close($connect);
 	}
 ?>

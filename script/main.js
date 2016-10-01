@@ -1,3 +1,5 @@
+$("body").append("<script type='text/javascript' src='./script/data.js'></script>"); // 在这里才引入data.js确定先后顺序以调用其函数
+
 var currentClicked = $(".hovered");
 var clickedOrNot = false;
 var banner = $(".foot-banner");
@@ -70,5 +72,29 @@ $(document).ready(function(){
 	$(".miao-left").mouseleave(function(){
 		$(".public").fadeOut(300);
 		$(".miao-left").attr("src","./image/miao0.png");
+	});
+});
+
+// 页面初始ajax信息传输
+$(document).ready(function(){
+	var hoverMonth = $(".hovered").children()[0].innerHTML;
+	var hoverDate = $(".hovered").children()[1].innerHTML;
+	var dateToSend = hoverMonth + hoverDate;
+	$.ajax({
+		type:"POST",
+		url: "script/getdata.php",
+		dataType:"json",
+		data:{"request":dateToSend},
+		success: function(result){
+			if(result.success){
+				if(result.db){
+					showResult(result.company,result.type,result.tick,result.site); //调用了data.js的函数
+				}else{
+					showEmpty(hoverMonth,hoverDate);
+				}
+			}else{
+				alert("数据传输出错，请刷新重试。");
+			}
+		}
 	});
 });

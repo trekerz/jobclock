@@ -19,21 +19,28 @@ function showResult(company,type,tick,site){
 		$("<span class='main-info-site'></span>").appendTo(main_info_content3[i]).text("地点");
 		i++;
 	}
-	var i = 0;
+	i = 0;
 	for(var item in type){
 		$("<span class='main-info-inner'></span>").appendTo(main_info_content1[i]).text(type[item]);
 		i++;
 	}
-	var i = 0;
+	i = 0;
 	for(var item in tick){
 		$("<span class='main-info-inner'></span>").appendTo(main_info_content2[i]).text(tick[item]);
 		i++;
 	}
-	var i = 0;
+	i = 0;
 	for(var item in site){
 		$("<span class='main-info-inner'></span>").appendTo(main_info_content3[i]).text(site[item]);
 		i++;
 	}
+}
+
+// 数据表为空时显示的为空提示信息
+function showEmpty(month,date){
+	$(".main-content").children().remove();
+	var messageToShow = month+"月"+date+"日<br/><br/><hr style='width:60%;margin-left:20%;border-top:#ccc dashed 4px;'/><br/>没有宣讲会信息";
+	$("<div class='main-info-empty'></div>").appendTo(".main-content").html(messageToShow);
 }
 
 // 信息显示入口函数
@@ -51,14 +58,18 @@ $(document).ready(function(){
 				data:{"request":dateToSend},
 				success: function(result){
 					if(result.success){
-						showResult(result.company,result.type,result.tick,result.site);
+						if(result.db){
+							showResult(result.company,result.type,result.tick,result.site);
+						}else{
+							showEmpty(month,date);
+						}
 					}else{
 						alert("数据传输出错，请刷新重试。");
 					}
 				}
 			});
 		}else{
-			console.log("the same");
+			console.log("重复点击~"); // 重复点击时不发送ajax
 		}
 		$hasClassHovered = $(this).html();
 	});
