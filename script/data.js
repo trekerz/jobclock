@@ -1,3 +1,7 @@
+/**
+* 根据请求从后台获取数据并构建前端显示模型
+ */
+
 // 显示相应日期的信息
 function showResult(company,type,tick,site){
 	$(".main-content").children().remove();
@@ -13,7 +17,7 @@ function showResult(company,type,tick,site){
 		main_info_content1[i] = $("<div class='main-info-content'></div>").appendTo(main_info[i]);
 		main_info_content2[i] = $("<div class='main-info-content'></div>").appendTo(main_info[i]);
 		main_info_content3[i] = $("<div class='main-info-content'></div>").appendTo(main_info[i]);
-		$("<span></span>").appendTo(main_info_head[i]).text(company[item]);
+		$("<span></span>").appendTo(main_info_head[i]).text((i+1)+" . "+company[item]);
 		$("<span class='main-info-type'></span>").appendTo(main_info_content1[i]).text("类型");
 		$("<span class='main-info-time'></span>").appendTo(main_info_content2[i]).text("时间");
 		$("<span class='main-info-site'></span>").appendTo(main_info_content3[i]).text("地点");
@@ -21,17 +25,37 @@ function showResult(company,type,tick,site){
 	}
 	i = 0;
 	for(var item in type){
-		$("<span class='main-info-inner'></span>").appendTo(main_info_content1[i]).text(type[item]);
+		if(type[item] !== ""){
+			$("<span class='main-info-inner'></span>").appendTo(main_info_content1[i]).text(type[item]);
+		}else{
+			$("<span class='main-info-inner'></span>").appendTo(main_info_content1[i]).text("（无信息）");
+		}
 		i++;
 	}
 	i = 0;
 	for(var item in tick){
-		$("<span class='main-info-inner'></span>").appendTo(main_info_content2[i]).text(tick[item]);
+		if(tick[item] !== ""){
+			$("<span class='main-info-inner'></span>").appendTo(main_info_content2[i]).text(tick[item]);
+		}else{
+			$("<span class='main-info-inner'></span>").appendTo(main_info_content2[i]).text("（无信息）");
+		}
 		i++;
 	}
 	i = 0;
 	for(var item in site){
-		$("<span class='main-info-inner'></span>").appendTo(main_info_content3[i]).text(site[item]);
+		if(site[item] !== ""){
+			$("<span class='main-info-inner'></span>").appendTo(main_info_content3[i]).text(site[item]);
+		}else{
+			$("<span class='main-info-inner'></span>").appendTo(main_info_content3[i]).text("（无信息）");
+		}
+
+		// 匹配校区使用不同颜色
+		var reg = /^.*五山.*$/;
+		if(reg.test(site[item])){
+			main_info_head[i].css("background-color","#B9EFFF");
+		}else{
+			main_info_head[i].css("background-color","#EFFFEC");
+		}
 		i++;
 	}
 }
@@ -53,6 +77,7 @@ $(document).ready(function(){
 			var dateToSend = month + date;
 			$.ajax({
 				type:"POST",
+				async: true,
 				url: "script/getdata.php",
 				dataType:"json",
 				data:{"request":dateToSend},
@@ -69,7 +94,7 @@ $(document).ready(function(){
 				}
 			});
 		}else{
-			console.log("重复点击~"); // 重复点击时不发送ajax
+			// 重复选择时不发送ajax
 		}
 		$hasClassHovered = $(this).html();
 	});

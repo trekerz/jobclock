@@ -1,4 +1,11 @@
-$("body").append("<script type='text/javascript' src='./script/data.js'></script>"); // 在这里才引入data.js确定先后顺序以调用其函数
+/**
+* 日期按钮入口函数
+* 两侧滚动入口函数
+* 显示联系信息入口函数
+* 页面初始ajax信息传输
+ */
+
+// $("body").append("<script type='text/javascript' src='./script/data.js'></script>");
 
 var currentClicked = $(".hovered");
 var clickedOrNot = false;
@@ -82,6 +89,7 @@ $(document).ready(function(){
 	var dateToSend = hoverMonth + hoverDate;
 	$.ajax({
 		type:"POST",
+		async: true,
 		url: "script/getdata.php",
 		dataType:"json",
 		data:{"request":dateToSend},
