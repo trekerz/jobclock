@@ -56,6 +56,7 @@ function showResult(company,type,tick,site){
 		}else{
 			main_info_head[i].css("background-color","#EFFFEC");
 		}
+
 		i++;
 	}
 }
@@ -63,8 +64,12 @@ function showResult(company,type,tick,site){
 // 数据表为空时显示的为空提示信息
 function showEmpty(month,date){
 	$(".main-content").children().remove();
-	var messageToShow = month+"月"+date+"日<br/><br/><hr style='width:60%;margin-left:20%;border-top:#ccc dashed 4px;'/><br/>没有宣讲会信息";
-	$("<div class='main-info-empty'></div>").appendTo(".main-content").html(messageToShow);
+	var messageToShow = month+"月"+date+"日<br/><br/><hr style='border-top:#ccc dashed 4px;'/><br/>没有宣讲会信息";
+	$("<div class='main-info-empty'></div>").appendTo(".main-content");
+	$("<div class='main-info-empty-inner'></div>").appendTo(".main-info-empty").html(messageToShow);
+
+	$messageToShow = $(".main-info-empty-inner");
+	$messageToShow.animate({paddingTop: "15%",opacity: 1.0});
 }
 
 // 信息显示入口函数
