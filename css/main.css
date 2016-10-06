@@ -226,12 +226,14 @@ body{
 	-webkit-box-shadow: 0px 0px 8px rgba(34,25,25,0.2);
 }
 
-.main-info-head span{
+.main-info-head a{
 	font-family: "Microsoft YaHei";
 	font-size: 25px;
 	margin-left: -15px; /*初始状态，后续有动画*/
 	line-height: 50px;
 	opacity: 0; /*初始状态，后续有动画*/
+	text-decoration: none;
+	color :#000000;
 }
 
 .main-info-content{

@@ -1,5 +1,6 @@
 <?php
 	header("Content-Type: text/plain;charset=utf-8");
+	include "../include/config.inc.php";
 
 	// 屏蔽警告
 	error_reporting(0);
@@ -14,6 +15,7 @@
 			case 2: $character="type";break;
 			case 3: $character="tick";break;
 			case 4: $character="site";break;
+			case 5: $character="link";break;
 			default: break;
 		}
 
@@ -36,12 +38,6 @@
 		return $mJson;
 	}
 	
-	// 定义数据库参数
-	$server_name = "127.0.0.1:3306";
-	$server_username = "root";
-	$server_password = "root";
-	$database = "job";
-	
 	// 入口
 	if($_POST["request"]){
 		$dateRequested = $_POST["request"];
@@ -50,6 +46,7 @@
 		$sql_type = "SELECT type FROM `".$dateRequested."`";
 		$sql_tick = "SELECT tick FROM `".$dateRequested."`";
 		$sql_site = "SELECT site FROM `".$dateRequested."`";
+		$sql_link = "SELECT link FROM `".$dateRequested."`";
 
 		// 连接
 		$connect = mysql_connect($server_name , $server_username , $server_password);
@@ -60,10 +57,11 @@
 		$type = mysql_db_query($database, $sql_type, $connect);
 		$tick = mysql_db_query($database, $sql_tick, $connect);
 		$site = mysql_db_query($database, $sql_site, $connect);
+		$link = mysql_db_query($database, $sql_link, $connect);
 
-		if(!empty($company) || !empty($type) || !empty($tick) || !empty($site)){
+		if(!empty($company) || !empty($type) || !empty($tick) || !empty($site) || !empty($link)){
 			// 构造和发送json
-			echo '{"success":true,"db":true,'.jsonFactory($company,1).','.jsonFactory($type,2).','.jsonFactory($tick,3).','.jsonFactory($site,4).'}';
+			echo '{"success":true,"db":true,'.jsonFactory($company,1).','.jsonFactory($type,2).','.jsonFactory($tick,3).','.jsonFactory($site,4).','.jsonFactory($link,5).'}';
 		}else{
 			// 数据表为空的情况
 			echo '{"success":true,"db":false}';

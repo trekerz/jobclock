@@ -1,13 +1,14 @@
 /**
 * 根据请求从后台获取数据并构建前端显示模型
- */
+*/
 
 // 显示相应日期的信息
-function showResult(company,type,tick,site){
+function showResult(company,type,tick,site,link){
 	$(".main-content").children().remove();
 	var i = 0;
 	var main_info = [];
 	var main_info_head = [];
+	var main_info_head_a = [];
 	var main_info_content1 = [];
 	var main_info_content2 = [];
 	var main_info_content3 = [];
@@ -17,7 +18,8 @@ function showResult(company,type,tick,site){
 		main_info_content1[i] = $("<div class='main-info-content'></div>").appendTo(main_info[i]);
 		main_info_content2[i] = $("<div class='main-info-content'></div>").appendTo(main_info[i]);
 		main_info_content3[i] = $("<div class='main-info-content'></div>").appendTo(main_info[i]);
-		$("<span></span>").appendTo(main_info_head[i]).text((i+1)+" . "+company[item]).stop().animate({marginLeft: "15px",opacity: 1},400);
+		main_info_head_a[i] = $("<a></a>").appendTo(main_info_head[i]);
+		main_info_head_a[i].text((i+1)+" . "+company[item]).stop().animate({marginLeft: "15px",opacity: 1},400);
 		$("<span class='main-info-type'></span>").appendTo(main_info_content1[i]).text("类型");
 		$("<span class='main-info-time'></span>").appendTo(main_info_content2[i]).text("时间");
 		$("<span class='main-info-site'></span>").appendTo(main_info_content3[i]).text("地点");
@@ -61,7 +63,16 @@ function showResult(company,type,tick,site){
 		}else{
 			main_info_head[i].css("background-color","#EFFFEC");
 		}
-
+		i++;
+	}
+	i = 0;
+	for(var item in link){
+		if(link[item] !== ""){
+			var httpLink = "http://jyzx.6ihnep7.cas.scut.edu.cn/jyzx/newSystem/noticeDetail.jsp?id="+link[item];
+			main_info_head_a[i].attr("href",httpLink);
+		}else{
+			// 没链接则不响应
+		}
 		i++;
 	}
 }
@@ -94,7 +105,7 @@ $(document).ready(function(){
 				success: function(result){
 					if(result.success){
 						if(result.db){
-							showResult(result.company,result.type,result.tick,result.site);
+							showResult(result.company,result.type,result.tick,result.site,result.link);
 						}else{
 							showEmpty(month,date);
 						}
