@@ -73,6 +73,8 @@ body{
 	margin-top: 15px;
 }
 
+@-moz-document url-prefix(){#head-time{margin-top: -85px;}} /*Firefox hack*/
+
 .head-CD1,.head-CD2{
 	background-color:rgba(114,192,234,0.7);
 	color:#C5F9FE;
@@ -254,7 +256,7 @@ body{
 	box-shadow: 0px 0px 8px rgba(34,25,25,0.2) inset;
 }
 
-.main-info-empty{
+.main-info-empty,.main-info-loading{
 	width: 98%;
 	height: 450px;
 	margin: 0 auto;
