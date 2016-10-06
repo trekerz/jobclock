@@ -14,7 +14,7 @@ function showTime(){
 	var day = getXingqi(time.getDay());
 	var hour = correctTime(time.getHours());
 	var minute = correctTime(time.getMinutes());
-	document.getElementById("head-time").innerHTML = (year+"年"+month+"月"+date+"日&nbsp;"+day+"&nbsp;"+hour+":"+minute);
+	document.getElementById("head-time").innerHTML = (year+"年"+month+"月"+date+"日 "+day+" "+hour+":"+minute);
 
 	setTimeout(showTime,1000);
 }
