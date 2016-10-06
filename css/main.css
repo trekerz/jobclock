@@ -13,12 +13,10 @@ body{
 	FILTER: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=#C5F9FE,endColorStr=#D7F4DF); /* IE */
 	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#C5F9FE', endColorstr='#D7F4DF'); /* IE6 & IE7 */
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#C5F9FE', endColorstr='#D7F4DF')"; /* IE8 */ 
-	background:-moz-linear-gradient(top,#C5F9FE,#D7F4DF);/* 火狐 */
-	background:-webkit-linear-gradient(top,#C5F9FE,#D7F4DF);/* 谷歌 */
+	background:-moz-linear-gradient(top,#C5F9FE,#D7F4DF);/* Firefox */
+	background:-webkit-linear-gradient(top,#C5F9FE,#D7F4DF);/* chrome */
 	/*background-size: contain;*/
 }
-
-
 
 
 .head{
@@ -66,6 +64,9 @@ body{
 	color:#C5F9FE;
 	padding: 5px 5px;
 	border-radius: 25px;
+	-moz-border-radius: 25px;
+	-o-border-radius: 25px;
+	-webkit-border-radius: 25px;
 	font-family: "simHei";
 	font-weight: bold;
 	height: 24px;
@@ -80,6 +81,9 @@ body{
 	color:#C5F9FE;
 	padding: 5px 5px;
 	border-radius: 25px;
+	-moz-border-radius: 25px;
+	-o-border-radius: 25px;
+	-webkit-border-radius: 25px;
 	font-family: "simHei";
 	font-weight: bold;
 	margin-top:10px;
@@ -103,16 +107,19 @@ body{
 
 .head-card-item{
 	border: #12CAD3 solid 3px;
-	border-top-left-radius: 50px;
-	border-top-right-radius: 50px;
-	border-bottom-left-radius: 50px;
-	border-bottom-right-radius: 50px;
+	border-radius: 50px;
+	-moz-border-radius: 50px;
+	-o-border-radius: 50px;
+	-webkit-border-radius: 50px;
 	color: #8AD1EF;
 	background-color: #0E6B6F;
 	margin-right: 0px;
 	padding: 8px 8px;
 	text-decoration: none;
 	box-shadow: 0px 0px 8px rgba(34,25,25,0.2);
+	-moz-box-shadow: 0px 0px 8px rgba(34,25,25,0.2);
+	-o-box-shadow: 0px 0px 8px rgba(34,25,25,0.2);
+	-webkit-box-shadow: 0px 0px 8px rgba(34,25,25,0.2);
 }
 
 .head-card a:active{
@@ -165,7 +172,13 @@ body{
 	width: 150px;
 	height: 150px;
 	border-radius: 20px;
+	-moz-border-radius: 20px;
+	-o-border-radius: 20px;
+	-webkit-border-radius: 20px;
 	box-shadow: 0px 0px 8px rgba(234,25,25,0.2);
+	-moz-box-shadow: 0px 0px 8px rgba(234,25,25,0.2);
+	-o-box-shadow: 0px 0px 8px rgba(234,25,25,0.2);
+	-webkit-box-shadow: 0px 0px 8px rgba(234,25,25,0.2);
 	margin-left: 25%;
 }
 
@@ -173,7 +186,13 @@ body{
 	width: 150px;
 	height: 150px;
 	border-radius: 20px;
+	-moz-border-radius: 20px;
+	-o-border-radius: 20px;
+	-webkit-border-radius: 20px;
 	box-shadow: 0px 0px 8px rgba(34,25,225,0.2);
+	-moz-box-shadow: 0px 0px 8px rgba(34,25,225,0.2);
+	-o-box-shadow: 0px 0px 8px rgba(34,25,225,0.2);
+	-webkit-box-shadow: 0px 0px 8px rgba(34,25,225,0.2);
 	margin-left: 25%;
 }
 
@@ -198,7 +217,13 @@ body{
 	height: 25%;
 	background-color: #EFFFEC;
 	border-radius: 20px;
+	-moz-border-radius: 20px;
+	-o-border-radius: 20px;
+	-webkit-border-radius: 20px;
 	box-shadow: 0px 0px 8px rgba(34,25,25,0.2);
+	-moz-box-shadow: 0px 0px 8px rgba(34,25,25,0.2);
+	-o-box-shadow: 0px 0px 8px rgba(34,25,25,0.2);
+	-webkit-box-shadow: 0px 0px 8px rgba(34,25,25,0.2);
 }
 
 .main-info-head span{
@@ -224,8 +249,17 @@ body{
 	line-height: 50px;
 	text-align: center;
 	border-top-left-radius: 20px;
+	-moz-border-top-left-radius: 20px;
+	-o-border-top-left-radius: 20px;
+	-webkit-border-top-left-radius: 20px;
 	border-bottom-left-radius: 20px;
+	-moz-border-bottom-left-radius: 20px;
+	-o-border-bottom-left-radius: 20px;
+	-webkit-border-bottom-left-radius: 20px;
 	box-shadow: 0px 0px 8px rgba(34,25,25,0.2) inset;
+	-moz-box-shadow: 0px 0px 8px rgba(34,25,25,0.2) inset;
+	-o-box-shadow: 0px 0px 8px rgba(34,25,25,0.2) inset;
+	-webkit-box-shadow: 0px 0px 8px rgba(34,25,25,0.2) inset;
 }
 
 .main-info-type{
@@ -252,8 +286,17 @@ body{
 	line-height: 50px;
 	padding-left: 30px;
 	border-top-right-radius: 20px;
+	-moz-border-top-right-radius: 20px;
+	-o-border-top-right-radius: 20px;
+	-webkit-border-top-right-radius: 20px;
 	border-bottom-right-radius: 20px;
+	-moz-border-bottom-right-radius: 20px;
+	-o-border-bottom-right-radius: 20px;
+	-webkit-border-bottom-right-radius: 20px;
 	box-shadow: 0px 0px 8px rgba(34,25,25,0.2) inset;
+	-moz-box-shadow: 0px 0px 8px rgba(34,25,25,0.2) inset;
+	-o-box-shadow: 0px 0px 8px rgba(34,25,25,0.2) inset;
+	-webkit-box-shadow: 0px 0px 8px rgba(34,25,25,0.2) inset;
 }
 
 .main-info-empty,.main-info-loading{
