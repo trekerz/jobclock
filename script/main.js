@@ -34,6 +34,19 @@ function clickItem (){
 	currentClicked = $(this);
 }
 
+// 删除Cookie
+function delCookie(name){
+	var timeToUse = new Date();
+	timeToUse.setTime(timeToUse.getTime() - 1);
+	document.cookie = name+"="+";expires="+timeToUse.toGMTString();
+}
+
+// 打印出访问次数
+function showVisitTimes(times){
+	$("<div class='foot-times'></div>").appendTo($(".foot")).text(times);
+}
+
+
 
 // 日期按钮入口函数
 $(document).ready(function(){
@@ -87,6 +100,7 @@ $(document).ready(function(){
 	var hoverMonth = $(".hovered").children()[0].innerHTML;
 	var hoverDate = $(".hovered").children()[1].innerHTML;
 	var dateToSend = hoverMonth + hoverDate;
+	document.cookie = "status=visited";
 	$.ajax({
 		type:"POST",
 		async: true,
@@ -95,6 +109,7 @@ $(document).ready(function(){
 		data:{"request":dateToSend},
 		success: function(result){
 			if(result.success){
+				showVisitTimes(result.visited);
 				if(result.db){
 					showResult(result.company,result.type,result.tick,result.site); //调用了data.js的函数
 				}else{
@@ -105,4 +120,5 @@ $(document).ready(function(){
 			}
 		}
 	});
+	delCookie("status");
 });
