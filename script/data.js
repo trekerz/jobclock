@@ -2,12 +2,12 @@
 * 根据请求从后台获取数据并构建前端显示模型
 */
 
-// 缓冲等待动画
+// 缓冲等待动画（网络不好时作用大些）
 function showLoading(){
 	$(".main-content").children().remove();
-	var messageToShow = "<img src='./image/clock.png' alt='Loading...' class='head-logo loading-logo'><p>加载中......</p>";
+	var pngToShow = "<img src='./image/clock.png' alt='Loading...' class='head-logo loading-logo'><p>加载中......</p>";
 	$("<div class='main-info-loading'></div>").appendTo(".main-content");
-	$("<div class='main-info-loading-inner'></div>").appendTo(".main-info-loading").html(messageToShow);
+	$("<div class='main-info-loading-inner'></div>").appendTo(".main-info-loading").html(pngToShow);
 }
 
 // 显示相应日期的信息
@@ -100,8 +100,8 @@ function showEmpty(month,date){
 $(document).ready(function(){
 	$hasClassHovered = $(".hovered").html(); // 防重复点击而导致过多http请求
 	$(".head-card-item").click(function(){
-		showLoading();
 		if(!($(this).html() == $hasClassHovered)){
+			showLoading();
 			var month = $(this).children()[0].innerHTML;
 			var date = $(this).children()[1].innerHTML;
 			var dateToSend = month + date;

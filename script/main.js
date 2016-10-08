@@ -97,6 +97,7 @@ $(document).ready(function(){
 
 // 页面初始ajax信息传输
 $(document).ready(function(){
+	showLoading();
 	var hoverMonth = $(".hovered").children()[0].innerHTML;
 	var hoverDate = $(".hovered").children()[1].innerHTML;
 	var dateToSend = hoverMonth + hoverDate;

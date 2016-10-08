@@ -317,7 +317,14 @@ body{
 	color: #EC5B5B;
 }
 
-.main-info-empty-inner,.main-info-loading-inner{
+.main-info-empty-inner{
+	width:60%;
+	height: 100%;
+	margin-left:20%;
+	opacity: 0; /*初始状态，后续有动画*/
+}
+
+.main-info-loading-inner{
 	width:60%;
 	height: 100%;
 	margin-left:20%;
