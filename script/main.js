@@ -63,20 +63,22 @@ $(document).ready(function(){
 
 // 两侧滚动入口函数
 $(document).ready(function(){
-	var $miao1 = $(".main-left");
-	var $miao2 = $(".main-right"),
+	var $miao1 = $(".main-left"),
+	$miao2 = $(".main-right"),
 	$window = $(window),
-	offset = $miao1.offset(),
-	topPadding = 250;
+	$mOffsetTop = $miao1.offset().top; // 初始的距离浏览器顶部的长度（试验值260）
+
 	$window.scroll(function(){
-		if($window.scrollTop() > offset.top - 250){
-			$miao1.stop().animate({marginTop: $window.scrollTop() - offset.top + topPadding});
-			$miao2.stop().animate({marginTop: $window.scrollTop() - offset.top + topPadding});
+		if($window.scrollTop() > $mOffsetTop - 250){
+			// 窗口滑动大于260-250=10时才跟着滑动
+			$miao1.stop().animate({marginTop: $window.scrollTop()});
+			$miao2.stop().animate({marginTop: $window.scrollTop()});
 		}else{
 			$miao1.stop().animate({marginTop: 50});
 			$miao2.stop().animate({marginTop: 50});
 		}
 	});
+
 });
 
 // 显示联系信息入口函数
