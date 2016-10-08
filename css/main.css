@@ -317,11 +317,15 @@ body{
 	color: #EC5B5B;
 }
 
-.main-info-empty-inner{
+.main-info-empty-inner,.main-info-loading-inner{
 	width:60%;
 	height: 100%;
 	margin-left:20%;
-	opacity: 0; /*初始状态，后续有动画*/
+	padding-top: 15%;
+}
+
+.loading-logo{
+	-webkit-animation: head-logo-shake 0.1s linear infinite;
 }
 
 
