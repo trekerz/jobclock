@@ -2,11 +2,19 @@
 * 日期按钮入口函数
 * 两侧滚动入口函数
 * 显示联系信息入口函数
-* 页面初始ajax信息传输
+* 
+* 1.hoverinItem ()
+* 2.hoveroutItem ()
+* 3.clickItem ()
+* 4.delCookie(name)
+* 5.showVisitTimes(times)
+* 
  */
 
 // $("body").append("<script type='text/javascript' src='./script/data.js'></script>");
 
+// 全部变量
+var sStorage = window.sessionStorage;
 var currentClicked = $(".hovered");
 var clickedOrNot = false;
 var banner = $(".foot-banner");
@@ -102,6 +110,7 @@ $(document).ready(function(){
 	var hoverDate = $(".hovered").children()[1].innerHTML;
 	var dateToSend = hoverMonth + hoverDate;
 	document.cookie = "status=visited";
+	showLoading(); // data.js
 	$.ajax({
 		type:"POST",
 		async: true,
@@ -112,10 +121,11 @@ $(document).ready(function(){
 			if(result.success){
 				showVisitTimes(result.visited);
 				if(result.db){
-					showResult(result.company,result.type,result.tick,result.site); //调用了data.js的函数
+					showResult(result.company,result.type,result.tick,result.site); // data.js
 				}else{
-					showEmpty(hoverMonth,hoverDate);
+					showEmpty(hoverMonth,hoverDate); // data.js
 				}
+				sStorage.setItem(dateToSend,JSON.stringify(result)); //data.js
 			}else{
 				alert("数据传输出错，请刷新重试。");
 			}

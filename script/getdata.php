@@ -2,6 +2,10 @@
 	/**
 	* 获取请求，查找数据库并返回数据
 	* 根据cookie计数访问次数
+	* 
+	* 1.jsonFactory($source,$index)
+	* 2.visitedCount($cookie_get,$connect,$database)
+	* 
 	*/
 
 	header("Content-Type: text/plain;charset=utf-8");

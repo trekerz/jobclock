@@ -1,6 +1,13 @@
 /**
 * 两个倒计时
 * 按钮上的日期显示
+*
+* 1.showTime()
+* 2.getXingqi(day)
+* 3.correctTime(num)
+* 4.countdown()
+* 5.defaultDateToShow()
+* 
  */
 
 // var time = new Date(); //time变量因为每次定时都需要改变，故不能设为全局变量

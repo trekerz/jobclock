@@ -1,6 +1,33 @@
 /**
 * 根据请求从后台获取数据并构建前端显示模型
+* 
+* 1.判断所请求函数是否存在于sessionStorage中
+* 	isItStored(date)
+* 2.缓冲等待动画（网络不好时作用大些）
+* 	showLoading()
+* 3.接收数据时执行
+* 	dataReceiving(month,date,result)
+* 4.检测到数据在sessionStorage，取出复用
+* 	dataReuse(month,date)
+* 5.框架构建相应日期的信息
+* 	showResult(result)
+* 6.数据表为空时显示的为空提示信息
+* 	showEmpty(month,date)
+* 	
 */
+
+// 全局变量
+var sStorage = window.sessionStorage;
+
+// 判断数据在sessionStorage中是否存在
+function isItStored(date){
+	var data = sStorage.getItem(date);
+	if(data){
+		return data;
+	}else{
+		return false;
+	}
+}
 
 // 缓冲等待动画（网络不好时作用大些）
 function showLoading(){
@@ -10,16 +37,46 @@ function showLoading(){
 	$("<div class='main-info-loading-inner'></div>").appendTo(".main-info-loading").html(pngToShow);
 }
 
-// 显示相应日期的信息
-function showResult(company,type,tick,site,link){
+// 接收数据时执行
+function dataReceiving(month,date,result){
+	if(result.success){
+		if(result.db){
+			showResult(result);
+		}else{
+			showEmpty(month,date);
+		}
+		sStorage.setItem(month+date,JSON.stringify(result));
+	}else{
+		alert("数据传输出错，请刷新重试。");
+	}
+}
+
+// 检测到数据在sessionStorage，直接复用
+function dataReuse(month,date){
+	var data = JSON.parse(isItStored(month+date));
+	if(data.db){
+		showResult(data);
+	}else{
+		showEmpty(month,date);
+	}
+	console.log("来自sessionStorage的数据");
+}
+
+// 框架构建相应日期的信息
+function showResult(result){
 	$(".main-content").children().remove();
-	var i = 0;
-	var main_info = [];
-	var main_info_head = [];
-	var main_info_head_a = [];
-	var main_info_content1 = [];
-	var main_info_content2 = [];
-	var main_info_content3 = [];
+	var i = 0,
+	company = result.company,
+	type = result.type,
+	tick = result.tick,
+	site = result.site,
+	link = result.link,
+	main_info = [],
+	main_info_head = [],
+	main_info_head_a = [],
+	main_info_content1 = [],
+	main_info_content2 = [],
+	main_info_content3 = [];
 	for(var item in company){
 		main_info[i] = $("<div class='main-info'></div>").appendTo(".main-content");
 		main_info_head[i] = $("<div class='main-info-head'></div>").appendTo(main_info[i]);
@@ -96,36 +153,40 @@ function showEmpty(month,date){
 	$messageToShow.stop().animate({paddingTop: "15%",opacity: 1.0});
 }
 
+
+
 // 信息显示入口函数
 $(document).ready(function(){
 	$hasClassHovered = $(".hovered").html(); // 防重复点击而导致过多http请求
 	$(".head-card-item").click(function(){
+
+		var month = $(this).children()[0].innerHTML;
+		var date = $(this).children()[1].innerHTML;
+		var dateToSend = month + date;
+
 		if(!($(this).html() == $hasClassHovered)){
-			showLoading();
-			var month = $(this).children()[0].innerHTML;
-			var date = $(this).children()[1].innerHTML;
-			var dateToSend = month + date;
-			$.ajax({
-				type:"POST",
-				async: true,
-				url: "script/getdata.php",
-				dataType:"json",
-				data:{"request":dateToSend},
-				success: function(result){
-					if(result.success){
-						if(result.db){
-							showResult(result.company,result.type,result.tick,result.site,result.link);
-						}else{
-							showEmpty(month,date);
-						}
-					}else{
-						alert("数据传输出错，请刷新重试。");
+
+			// 检查sessionStorage里有没有请求的数据
+			if(isItStored(dateToSend) === false){
+				showLoading();
+				$.ajax({
+					type:"POST",
+					async: true,
+					url: "script/getdata.php",
+					dataType:"json",
+					data:{"request":dateToSend},
+					success: function(result){
+						dataReceiving(month,date,result);
 					}
-				}
-			});
+				});
+			}else{
+				dataReuse(month,date);
+			}
+
 		}else{
 			// 重复选择时不发送ajax
 		}
+
 		$hasClassHovered = $(this).html();
 	});
 });
