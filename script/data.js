@@ -45,7 +45,13 @@ function dataReceiving(month,date,result){
 		}else{
 			showEmpty(month,date);
 		}
-		sStorage.setItem(month+date,JSON.stringify(result));
+		
+		try {
+			sStorage.setItem(month+date,JSON.stringify(result));
+		}
+		catch (e){
+			console.log("新数据存储失败:"+e);
+		}
 	}else{
 		alert("数据传输出错，请刷新重试。");
 	}

@@ -14,7 +14,6 @@
 // $("body").append("<script type='text/javascript' src='./script/data.js'></script>");
 
 // 全部变量
-var sStorage = window.sessionStorage;
 var currentClicked = $(".hovered");
 var clickedOrNot = false;
 var banner = $(".foot-banner");
@@ -105,12 +104,11 @@ $(document).ready(function(){
 
 // 页面初始ajax信息传输
 $(document).ready(function(){
-	showLoading();
+	showLoading(); // data.js
 	var hoverMonth = $(".hovered").children()[0].innerHTML;
 	var hoverDate = $(".hovered").children()[1].innerHTML;
 	var dateToSend = hoverMonth + hoverDate;
 	document.cookie = "status=visited";
-	showLoading(); // data.js
 	$.ajax({
 		type:"POST",
 		async: true,
@@ -118,17 +116,8 @@ $(document).ready(function(){
 		dataType:"json",
 		data:{"request":dateToSend},
 		success: function(result){
-			if(result.success){
-				showVisitTimes(result.visited);
-				if(result.db){
-					showResult(result.company,result.type,result.tick,result.site); // data.js
-				}else{
-					showEmpty(hoverMonth,hoverDate); // data.js
-				}
-				sStorage.setItem(dateToSend,JSON.stringify(result)); //data.js
-			}else{
-				alert("数据传输出错，请刷新重试。");
-			}
+			showVisitTimes(result.visited);
+			dataReceiving(hoverMonth,hoverDate,result); // data.js
 		}
 	});
 	delCookie("status");
