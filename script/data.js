@@ -21,7 +21,12 @@ var sStorage = window.sessionStorage;
 
 // 判断数据在sessionStorage中是否存在
 function isItStored(date){
-	var data = sStorage.getItem(date);
+	try {
+		var data = sStorage.getItem(date);
+	}catch (e){
+		console.log("数据读取失败:"+e);
+	}
+	
 	if(data){
 		return data;
 	}else{
@@ -45,7 +50,7 @@ function dataReceiving(month,date,result){
 		}else{
 			showEmpty(month,date);
 		}
-		
+
 		try {
 			sStorage.setItem(month+date,JSON.stringify(result));
 		}
@@ -71,8 +76,7 @@ function dataReuse(month,date){
 // 框架构建相应日期的信息
 function showResult(result){
 	$(".main-content").children().remove();
-	var i = 0,
-	company = result.company,
+	var company = result.company,
 	type = result.type,
 	tick = result.tick,
 	site = result.site,
@@ -83,68 +87,61 @@ function showResult(result){
 	main_info_content1 = [],
 	main_info_content2 = [],
 	main_info_content3 = [];
-	for(var item in company){
+	for(var i in company){
+
+		// 渲染company
 		main_info[i] = $("<div class='main-info'></div>").appendTo(".main-content");
 		main_info_head[i] = $("<div class='main-info-head'></div>").appendTo(main_info[i]);
 		main_info_content1[i] = $("<div class='main-info-content'></div>").appendTo(main_info[i]);
 		main_info_content2[i] = $("<div class='main-info-content'></div>").appendTo(main_info[i]);
 		main_info_content3[i] = $("<div class='main-info-content'></div>").appendTo(main_info[i]);
 		main_info_head_a[i] = $("<a></a>").appendTo(main_info_head[i]);
-		main_info_head_a[i].text((i+1)+" . "+company[item]).stop().animate({marginLeft: "15px",opacity: 1},400);
+		main_info_head_a[i].text(i+" . "+company[i]).stop().animate({marginLeft: "15px",opacity: 1},400);
 		$("<span class='main-info-type'></span>").appendTo(main_info_content1[i]).text("类型");
 		$("<span class='main-info-time'></span>").appendTo(main_info_content2[i]).text("时间");
 		$("<span class='main-info-site'></span>").appendTo(main_info_content3[i]).text("地点");
-		i++;
-	}
-	i = 0;
-	for(var item in type){
-		if(type[item] !== ""){
-			$needToFixSize = $("<span class='main-info-inner'></span>").appendTo(main_info_content1[i]).text(type[item]);
-			if(type[item].length > 35 && type[item].length <= 60){
+		
+		// 渲染type
+		if(type[i] !== ""){
+			$needToFixSize = $("<span class='main-info-inner'></span>").appendTo(main_info_content1[i]).text(type[i]);
+			if(type[i].length > 35 && type[i].length <= 60){
 				$needToFixSize.css("font-size","17px");
-			}else if(type[item].length > 60){
+			}else if(type[i].length > 60){
 				$needToFixSize.css("font-size","15px");
-			}else{}
+			}else{
+				// 其它长度小于35的文本使用默认样式
+			}
 		}else{
 			$("<span class='main-info-inner'></span>").appendTo(main_info_content1[i]).text("（无信息）");
 		}
-		i++;
-	}
-	i = 0;
-	for(var item in tick){
-		if(tick[item] !== ""){
-			$("<span class='main-info-inner'></span>").appendTo(main_info_content2[i]).text(tick[item]);
+
+		// 渲染tick
+		if(tick[i] !== ""){
+			$("<span class='main-info-inner'></span>").appendTo(main_info_content2[i]).text(tick[i]);
 		}else{
 			$("<span class='main-info-inner'></span>").appendTo(main_info_content2[i]).text("（无信息）");
 		}
-		i++;
-	}
-	i = 0;
-	for(var item in site){
-		if(site[item] !== ""){
-			$("<span class='main-info-inner'></span>").appendTo(main_info_content3[i]).text(site[item]);
+
+		// 渲染site
+		if(site[i] !== ""){
+			$("<span class='main-info-inner'></span>").appendTo(main_info_content3[i]).text(site[i]);
 		}else{
 			$("<span class='main-info-inner'></span>").appendTo(main_info_content3[i]).text("（无信息）");
 		}
-
-		// 匹配校区使用不同颜色
-		var reg = /^.*五山.*$/;
-		if(reg.test(site[item])){
+		var reg = /^.*五山.*$/; // 匹配校区使用不同颜色
+		if(reg.test(site[i])){
 			main_info_head[i].css("background-color","#B9EFFF");
 		}else{
 			main_info_head[i].css("background-color","#EFFFEC");
 		}
-		i++;
-	}
-	i = 0;
-	for(var item in link){
-		if(link[item] !== ""){
-			var httpLink = "http://jyzx.6ihnep7.cas.scut.edu.cn/jyzx/newSystem/noticeDetail.jsp?id="+link[item];
+
+		// 渲染link
+		if(link[i] !== ""){
+			var httpLink = "http://jyzx.6ihnep7.cas.scut.edu.cn/jyzx/newSystem/noticeDetail.jsp?id="+link[i];
 			main_info_head_a[i].attr("href",httpLink);
 		}else{
-			// 没链接则不响应
+			// 没链接则不分配链接
 		}
-		i++;
 	}
 }
 

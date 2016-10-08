@@ -38,9 +38,9 @@
 		$mJson = '"'.$character.'":{';
 		for($i=0; $i<count($arr); $i++){
 			if($i !== count($arr) - 1){
-				$mJson = $mJson.'"'.$character.($i+1).'":"'.$arr[$i].'",';
+				$mJson = $mJson.'"'.($i+1).'":"'.$arr[$i].'",';
 			}else{
-				$mJson = $mJson.'"'.$character.($i+1).'":"'.$arr[$i].'"}';
+				$mJson = $mJson.'"'.($i+1).'":"'.$arr[$i].'"}';
 			}
 		}
 
