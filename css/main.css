@@ -202,8 +202,9 @@ body{
 .main-info-head span{
 	font-family: "Microsoft YaHei";
 	font-size: 25px;
-	margin-left: 15px;
+	margin-left: -15px; /*初始状态，后续有动画*/
 	line-height: 50px;
+	opacity: 0; /*初始状态，后续有动画*/
 }
 
 .main-info-content{
@@ -271,7 +272,7 @@ body{
 	width:60%;
 	height: 100%;
 	margin-left:20%;
-	opacity: 0;
+	opacity: 0; /*初始状态，后续有动画*/
 }
 
 

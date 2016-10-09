@@ -17,7 +17,7 @@ function showResult(company,type,tick,site){
 		main_info_content1[i] = $("<div class='main-info-content'></div>").appendTo(main_info[i]);
 		main_info_content2[i] = $("<div class='main-info-content'></div>").appendTo(main_info[i]);
 		main_info_content3[i] = $("<div class='main-info-content'></div>").appendTo(main_info[i]);
-		$("<span></span>").appendTo(main_info_head[i]).text((i+1)+" . "+company[item]);
+		$("<span></span>").appendTo(main_info_head[i]).text((i+1)+" . "+company[item]).stop().animate({marginLeft: "15px",opacity: 1},400);
 		$("<span class='main-info-type'></span>").appendTo(main_info_content1[i]).text("类型");
 		$("<span class='main-info-time'></span>").appendTo(main_info_content2[i]).text("时间");
 		$("<span class='main-info-site'></span>").appendTo(main_info_content3[i]).text("地点");
@@ -26,7 +26,12 @@ function showResult(company,type,tick,site){
 	i = 0;
 	for(var item in type){
 		if(type[item] !== ""){
-			$("<span class='main-info-inner'></span>").appendTo(main_info_content1[i]).text(type[item]);
+			$needToFixSize = $("<span class='main-info-inner'></span>").appendTo(main_info_content1[i]).text(type[item]);
+			if(type[item].length > 35 && type[item].length <= 60){
+				$needToFixSize.css("font-size","17px");
+			}else if(type[item].length > 60){
+				$needToFixSize.css("font-size","15px");
+			}else{}
 		}else{
 			$("<span class='main-info-inner'></span>").appendTo(main_info_content1[i]).text("（无信息）");
 		}
@@ -69,7 +74,7 @@ function showEmpty(month,date){
 	$("<div class='main-info-empty-inner'></div>").appendTo(".main-info-empty").html(messageToShow);
 
 	$messageToShow = $(".main-info-empty-inner");
-	$messageToShow.animate({paddingTop: "15%",opacity: 1.0});
+	$messageToShow.stop().animate({paddingTop: "15%",opacity: 1.0});
 }
 
 // 信息显示入口函数
