@@ -128,12 +128,6 @@ function showResult(result){
 		}else{
 			$("<span class='main-info-inner'></span>").appendTo(main_info_content3[i]).text("（无信息）");
 		}
-		var reg = /^.*五山.*$/; // 匹配校区使用不同颜色
-		if(reg.test(site[i])){
-			main_info_head[i].css("background-color","#B9EFFF");
-		}else{
-			main_info_head[i].css("background-color","#EFFFEC");
-		}
 
 		// 渲染link
 		if(link[i] !== ""){
@@ -142,6 +136,23 @@ function showResult(result){
 		}else{
 			// 没链接则不分配链接
 		}
+
+		var reg_site = /^.*五山.*$/; // 匹配校区使用不同颜色
+		var reg_type = /^.*信|工.*$/; // 匹配专业使用不同颜色
+		if(reg_site.test(site[i])){
+			if(reg_type.test(type[i])){
+				main_info_head[i].css("background-image","-webkit-gradient(linear,20% 0%, 100% 0%, from(#B9EFFF),color-stop(0.5,#2FF),to(#2FB))");
+			}else{
+				main_info_head[i].css("background-color","#B9EFFF");
+			}
+		}else{
+			if(reg_type.test(type[i])){
+				main_info_head[i].css("background-image","-webkit-gradient(linear,20% 0%, 100% 0%, from(#EFFFEC),color-stop(0.5,#2FF),to(#2FB))");
+			}else{
+				main_info_head[i].css("background-color","#EFFFEC");
+			}
+		}
+
 	}
 }
 
