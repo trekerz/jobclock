@@ -138,16 +138,16 @@ function showResult(result){
 		}
 
 		var reg_site = /^.*五山.*$/; // 匹配校区使用不同颜色
-		var reg_type = /^.*信|工.*$/; // 匹配专业使用不同颜色
+		var reg_type = /^.*信|工|计科|不限.*$/; // 匹配专业使用不同颜色
 		if(reg_site.test(site[i])){
 			if(reg_type.test(type[i])){
-				main_info_head[i].css("background-image","-webkit-gradient(linear,20% 0%, 100% 0%, from(#B9EFFF),color-stop(0.5,#2FF),to(#2FB))");
+				main_info_head[i].css("background-image","-webkit-gradient(linear,70% 0%, 100% 0%, from(#B9EFFF),color-stop(0.5,#67C0FF),to(#2DA8FF))");
 			}else{
 				main_info_head[i].css("background-color","#B9EFFF");
 			}
 		}else{
 			if(reg_type.test(type[i])){
-				main_info_head[i].css("background-image","-webkit-gradient(linear,20% 0%, 100% 0%, from(#EFFFEC),color-stop(0.5,#2FF),to(#2FB))");
+				main_info_head[i].css("background-image","-webkit-gradient(linear,70% 0%, 100% 0%, from(#EFFFEC),color-stop(0.5,#FFFF77),to(#FFFF15))");
 			}else{
 				main_info_head[i].css("background-color","#EFFFEC");
 			}
