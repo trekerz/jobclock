@@ -164,15 +164,10 @@ body{
 	float: left;
 }
 
-.main-right{
-	width: 20%;
-	margin-top: 50px;
-	float: right;
-}
-
-.miao-left{
+.dateLeft{
 	width: 150px;
 	height: 150px;
+	margin-left: 25%;
 	border-radius: 20px;
 	-moz-border-radius: 20px;
 	-o-border-radius: 20px;
@@ -181,30 +176,28 @@ body{
 	-moz-box-shadow: 0px 0px 8px rgba(234,25,25,0.2);
 	-o-box-shadow: 0px 0px 8px rgba(234,25,25,0.2);
 	-webkit-box-shadow: 0px 0px 8px rgba(234,25,25,0.2);
-	margin-left: 25%;
+	
+	text-align: center;
+	font-family: "Microsoft YaHei";
+	background-color: #c3fafd;
 }
 
-.miao-right{
-	width: 150px;
-	height: 150px;
-	border-radius: 20px;
-	-moz-border-radius: 20px;
-	-o-border-radius: 20px;
-	-webkit-border-radius: 20px;
-	box-shadow: 0px 0px 8px rgba(34,25,225,0.2);
-	-moz-box-shadow: 0px 0px 8px rgba(34,25,225,0.2);
-	-o-box-shadow: 0px 0px 8px rgba(34,25,225,0.2);
-	-webkit-box-shadow: 0px 0px 8px rgba(34,25,225,0.2);
-	margin-left: 25%;
+.bigDate{
+	font-size:75px;
+	color: #f74480;
 }
 
-.publicQR,.contactQR{
-	width: 150px;
-	height: 150px;
-	margin-left: 25%;
-	margin-top: 3%;
+.smallMonth{
+	font-size:25px;
+	color: #47e9f3;
 }
 
+.bigDay{
+	font-size:35px;
+	color: #47e9f3;
+	height: 139px;
+	line-height: 139px;
+}
 
 .main-info{
 	width: 98%;
@@ -389,10 +382,28 @@ body{
 	clear: both;
 }
 
+.picToDisplay{
+	text-align: center;
+}
+
+.foot-contact{
+	display: inline-block;
+	float: left;
+	margin-left: 20px;
+}
+
+.foot-public{
+	display: inline-block;
+	float: right;
+	margin-right: 20px;
+}
+
 .foot-banner{
 	width: 600px;
 	height: 55px;
 	margin: 35px auto 0px auto;
+	display: inline-block;
+	text-align: center;
 }
 
 .foot-times{

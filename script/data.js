@@ -201,6 +201,7 @@ $(document).ready(function(){
 		}else{
 			// 重复选择时不发送ajax
 		}
+		slidingDate(month,date);
 
 		$hasClassHovered = $(this).html();
 	});
