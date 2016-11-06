@@ -114,10 +114,10 @@ $(".foot-contact").hide();
 $(".foot-public").hide();
 $(document).ready(function(){
 	$(".dateLeft").mouseenter(function(){
-		slidingDay($(".hovered").children()[0].innerHTML,$(".hovered").children()[1].innerHTML);		
+		slidingDay($(".hovered").children()[0].innerHTML,$(".hovered").children()[1].innerHTML); // 随时监测hover		
 	});
 	$(".dateLeft").mouseleave(function(){
-		slidingDate($(".hovered").children()[0].innerHTML,$(".hovered").children()[1].innerHTML);
+		slidingDate($(".hovered").children()[0].innerHTML,$(".hovered").children()[1].innerHTML); // 随时监测hover
 	});
 
 	$(".foot-contact").fadeIn(2000);

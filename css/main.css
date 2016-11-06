@@ -180,6 +180,7 @@ body{
 	text-align: center;
 	font-family: "Microsoft YaHei";
 	background-color: #c3fafd;
+	overflow: hidden;
 }
 
 .bigDate{
@@ -301,7 +302,7 @@ body{
 
 .main-info-empty,.main-info-loading{
 	width: 98%;
-	height: 450px;
+	height: 600px;
 	margin: 0 auto;
 	margin-top: 8px;
 	margin-bottom: 16px;
@@ -421,5 +422,8 @@ body{
 	.foot-times{
 		font-family: "SimSun";
 		margin: 16px auto 12px auto;
+	}
+	.foot-public{
+		margin-top: -89px;
 	}
 } /*Firefox hack*/
