@@ -43,5 +43,3 @@ http://www.jobclock.xyz
 
 
 ——2016年11月13日README.md
-
-这是一个低成本的测试项目网站。这个网站以LAM
